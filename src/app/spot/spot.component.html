@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+<div class="limiter">
+  <div class="container-table100">
+    <div class="wrap-table100">
+      <div class="table100">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let spot">{{spot.name}}</td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell class="description-cell"
+                *matCellDef="let spot">{{spot.description}}</td>
+          </ng-container>
+          <ng-container matColumnDef="coverPhoto">
+            <th mat-header-cell *matHeaderCellDef>Cover Photo</th>
+            <td mat-cell class="duration-cell"
+                *matCellDef="let spot">{{spot.coverPhoto}}</td>
+          </ng-container>
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef>Country</th>
+            <td mat-cell class="duration-cell"
+                *matCellDef="let spot">{{spot.country}}</td>
+          </ng-container>
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef>City</th>
+            <td mat-cell class="duration-cell"
+                *matCellDef="let spot">{{spot.city}}</td>
+          </ng-container>
+          <ng-container matColumnDef="street">
+            <th mat-header-cell *matHeaderCellDef>Street</th>
+            <td mat-cell class="duration-cell" *matCellDef="let spot">
+              <ng-container *ngIf="spot.street; else notProvided">
+                {{spot.street}}
+              </ng-container>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="house">
+            <th mat-header-cell *matHeaderCellDef>House</th>
+            <td mat-cell class="duration-cell"
+                *matCellDef="let spot">{{spot.house}}</td>
+          </ng-container>
+          <ng-container matColumnDef="apartment">
+            <th mat-header-cell *matHeaderCellDef>Apartment</th>
+            <td mat-cell class="duration-cell"
+                *matCellDef="let spot">{{spot.apartment}}</td>
+          </ng-container>
+          <ng-container matColumnDef="postalCode">
+            <th mat-header-cell *matHeaderCellDef>Postal Code</th>
+            <td mat-cell class="duration-cell" *matCellDef="let spot">
+              <ng-container *ngIf="spot.postalCode; else notProvided">
+                {{spot.postalCode}}
+              </ng-container>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Category</th>
+            <td mat-cell class="duration-cell"
+                *matCellDef="let spot">{{spot.category}}</td>
+          </ng-container>
+          <ng-container matColumnDef="subcategory">
+            <th mat-header-cell *matHeaderCellDef>Subcategory</th>
+            <td mat-cell class="duration-cell"
+                *matCellDef="let spot">{{spot.subcategory}}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns" class="column1"></tr>
+        </table>
+        <button class="round-button" mat-raised-button color="warn" style="position:absolute;" (click)="approveSelected()">Approve selected spots</button>
+        <ng-template #notProvided>
+          -
+        </ng-template>
+        <!--        <table>-->
+        <!--          <thead>-->
+        <!--          <tr class="table100-head fontable">-->
+        <!--            <th *ngFor="let col of columns">{{format(col)}}</th>-->
+        <!--          </tr>-->
+        <!--          </thead>-->
+        <!--          <tbody>-->
+        <!--          <tr class="fontable" *ngFor="let spot of spots | async" app-table-row [character]="spot" [columns]="columns">-->
+        <!--          </tr>-->
+        <!--          </tbody>-->
+        <!--        </table>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--===============================================================================================-->
+<script src="/Table_Responsive_v1/Table_Responsive_v1/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/Table_Responsive_v1/Table_Responsive_v1/vendor/bootstrap/js/popper.js"></script>
+<script src="/Table_Responsive_v1/Table_Responsive_v1/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/Table_Responsive_v1/Table_Responsive_v1/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="/Table_Responsive_v1/Table_Responsive_v1/js/main.js"></script>
+
+
+</body>
+</html>
