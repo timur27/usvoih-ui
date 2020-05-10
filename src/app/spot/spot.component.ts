@@ -4,6 +4,7 @@ import {SpotService} from './spot.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import {Spot} from '../api/spot';
 import {MatTable} from '@angular/material/table';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-spot-table',
@@ -12,12 +13,11 @@ import {MatTable} from '@angular/material/table';
 })
 export class SpotComponent implements OnInit {
   dataSource: SpotDataSource;
-  columns: string[];
   selection = new SelectionModel<Spot>(true, []);
   displayedColumns = ['select', 'name', 'description', 'coverPhoto', 'country', 'city', 'street', 'house', 'apartment', 'postalCode', 'category', 'subcategory'];
   @ViewChild(MatTable) table: MatTable<any>;
 
-  constructor(private spotService: SpotService) { }
+  constructor(private spotService: SpotService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.dataSource = new SpotDataSource(this.spotService);
@@ -43,9 +43,25 @@ export class SpotComponent implements OnInit {
   }
 
   approveSelected() {
-    this.spotService.approveSpots(this.selection.selected).subscribe(res => {
+    this.spotService.actionOnSpots(this.selection.selected, 'approve').subscribe(res => {
       this.dataSource.data = this.dataSource.loadSpots();
       this.table.renderRows();
+      const toast = this.snackBar.open(this.selection.selected.length + ' spots have been approved', 'Revert', {duration: 2000});
+      this.configureToast(toast);
+    });
+  }
+
+  configureToast(toast: any) {
+    toast.onAction().subscribe(() => {
+      this.spotService.actionOnSpots(this.selection.selected, 'unapprove').subscribe(r => {
+        this.dataSource.data = this.dataSource.loadSpots();
+        this.table.renderRows();
+        this.selection.clear();
+      });
+    });
+
+    toast.afterDismissed().subscribe(() => {
+      this.selection.clear();
     });
   }
 }

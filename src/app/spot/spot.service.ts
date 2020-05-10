@@ -7,14 +7,14 @@ import {map, startWith, switchMap} from 'rxjs/operators';
 @Injectable()
 export class SpotService {
 
-  localUrl = 'http://localhost:8080/';
+  localUrl = 'http://localhost:8081/';
   remoteUrl = 'https://usvoih.herokuapp.com/';
 
   constructor(private http: HttpClient) {
   }
 
   findSpots(): Observable<Spot[]> {
-    return this.http.get(this.remoteUrl + 'spots/unapproved')
+    return this.http.get(this.localUrl + 'spots/unapproved')
       .pipe(
         map((data: any[]) =>
           data.map(
@@ -23,8 +23,9 @@ export class SpotService {
       );
   }
 
-  approveSpots(spots: Spot[]): Observable<any>{
+  actionOnSpots(spots: Spot[], actionName: string): Observable<any>{
     const options = {headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json')};
-    return this.http.post(this.remoteUrl + 'spots/approve', JSON.stringify(spots), options);
+    return this.http.post(this.localUrl + 'spots/' + actionName, JSON.stringify(spots), options);
   }
 }
+
