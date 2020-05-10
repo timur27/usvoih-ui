@@ -14,7 +14,7 @@ export class SpotService {
   }
 
   findSpots(): Observable<Spot[]> {
-    return this.http.get(this.localUrl + 'spots/unapproved')
+    return this.http.get(this.remoteUrl + 'spots/unapproved')
       .pipe(
         map((data: any[]) =>
           data.map(
@@ -25,7 +25,7 @@ export class SpotService {
 
   actionOnSpots(spots: Spot[], actionName: string): Observable<any>{
     const options = {headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json')};
-    return this.http.post(this.localUrl + 'spots/' + actionName, JSON.stringify(spots), options);
+    return this.http.post(this.remoteUrl + 'spots/' + actionName, JSON.stringify(spots), options);
   }
 }
 
