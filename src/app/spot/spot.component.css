@@ -194,6 +194,11 @@ tbody tr:hover {
   cursor: pointer;
 }
 
+.column1:hover {
+  color: #555555;
+  background-color: #DCDCDC;
+}
+
 .column1 {
   width: 260px;
   padding-left: 40px;

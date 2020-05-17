@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <dt class="inputbox-title modal-title">Edit Spot</dt>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+    <section class="input-content">
+      <div class="input-content-wrap">
+          <dd class="inputbox-content">
+            <input [(ngModel)]="spot.name" id="input0" type="text" required/>
+            <label for="input0">Name</label>
+            <span class="underline"></span>
+          </dd>
+          <dd class="inputbox-content">
+            <input [(ngModel)]="spot.description" id="input1" type="text" required/>
+            <label for="input1">Description</label>
+            <span class="underline"></span>
+          </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.coverPhoto" id="input1" type="text" required/>
+          <label for="input1">Cover Photo</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.country" id="input1" type="text" required/>
+          <label for="input1">Country</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.city" id="input1" type="text" required/>
+          <label for="input1">City</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.street" id="input1" type="text" required/>
+          <label for="input1">Street</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.house" id="input1" type="text" required/>
+          <label for="input1">House</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.apartment" id="input1" type="text" required/>
+          <label for="input1">Apartment</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.postalCode" id="input1" type="text" required/>
+          <label for="input1">Postal Code</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.category" id="input1" type="text" required/>
+          <label for="input1">Category</label>
+          <span class="underline"></span>
+        </dd>
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.subcategory" id="input1" type="text" required/>
+          <label for="input1">Subcategory</label>
+          <span class="underline"></span>
+        </dd>
+      </div>
+    </section>
+  <button (click)="passBack()" type="submit" class="btn btn-primary w-100">Save</button>
+</div>

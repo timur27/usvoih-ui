@@ -5,6 +5,8 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {Spot} from '../api/spot';
 import {MatTable} from '@angular/material/table';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {SpotDetailsComponent} from './spot-details/spot-details.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-spot-table',
@@ -14,10 +16,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class SpotComponent implements OnInit {
   dataSource: SpotDataSource;
   selection = new SelectionModel<Spot>(true, []);
-  displayedColumns = ['select', 'name', 'description', 'coverPhoto', 'country', 'city', 'street', 'house', 'apartment', 'postalCode', 'category', 'subcategory'];
+  displayedColumns = ['select', 'name', 'city', 'category'];
+
   @ViewChild(MatTable) table: MatTable<any>;
 
-  constructor(private spotService: SpotService, private snackBar: MatSnackBar) { }
+  constructor(private spotService: SpotService, private snackBar: MatSnackBar, public modalService: NgbModal) { }
 
   ngOnInit() {
     this.dataSource = new SpotDataSource(this.spotService);
@@ -43,6 +46,7 @@ export class SpotComponent implements OnInit {
   }
 
   approveSelected() {
+    console.log('here is selected row: ', this.selection.selected);
     this.spotService.actionOnSpots(this.selection.selected, 'approve').subscribe(res => {
       this.dataSource.data = this.dataSource.loadSpots();
       this.table.renderRows();
@@ -62,6 +66,17 @@ export class SpotComponent implements OnInit {
 
     toast.afterDismissed().subscribe(() => {
       this.selection.clear();
+    });
+  }
+
+  openDetails(spot: Spot) {
+    const modalRef = this.modalService.open(SpotDetailsComponent);
+    modalRef.componentInstance.spot = spot;
+    modalRef.result.then((res) => {
+      const spotToUpdate = this.dataSource.data.findIndex(x => x.id === res.id);
+      console.log('here is id of updated spot: ', spotToUpdate);
+      this.dataSource.data[spotToUpdate] = res;
+      console.log(this.dataSource.data);
     });
   }
 }

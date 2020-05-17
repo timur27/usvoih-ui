@@ -11,11 +11,14 @@ import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SpotDetailsComponent} from './spot/spot-details/spot-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpotComponent
+    SpotComponent,
+    SpotDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -25,10 +28,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgbModule
   ],
   providers: [
-    SpotService
+    SpotService,
+    SpotDetailsComponent
   ],
   bootstrap: [AppComponent]
 })
