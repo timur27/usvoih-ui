@@ -14,18 +14,18 @@ export class SpotService {
   }
 
   findSpots(): Observable<Spot[]> {
-    return this.http.get(this.remoteUrl + 'spots/unapproved')
+    return this.http.get(this.localUrl + 'spots/unapproved')
       .pipe(
         map((data: any[]) =>
           data.map(
-            (item: any) => new Spot(item.id, item.name, item.description, item.coverPhoto, item.address.country, item.address.city, item.address.street, item.address.house, item.address.apartment, '30-724', item.type.category, item.type.subcategory)
+            (item: any) => new Spot(item.id, item.name, item.description, item.address, item.type, item.contact, item.coverPhoto, item.photos, item.overallRating, item.businessHours, item.ratings, item.tags)
           ))
       );
   }
 
   actionOnSpots(spots: Spot[], actionName: string): Observable<any>{
     const options = {headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json')};
-    return this.http.post(this.remoteUrl + 'spots/' + actionName, JSON.stringify(spots), options);
+    debugger;
+    return this.http.post(this.localUrl + 'spots/' + actionName, spots, options);
   }
 }
-

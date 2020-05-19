@@ -28,12 +28,12 @@
           <ng-container matColumnDef="city">
             <th mat-header-cell *matHeaderCellDef>City</th>
             <td mat-cell class="duration-cell"
-                *matCellDef="let spot">{{spot.city}}</td>
+                *matCellDef="let spot">{{spot.address.city}}</td>
           </ng-container>
           <ng-container matColumnDef="category">
             <th mat-header-cell *matHeaderCellDef>Category</th>
             <td mat-cell class="duration-cell"
-                *matCellDef="let spot">{{spot.category}}</td>
+                *matCellDef="let spot">{{spot.type.category}}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns" class="column1" (click)="openDetails(row)"></tr>

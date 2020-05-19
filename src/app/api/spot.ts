@@ -1,29 +1,35 @@
+import {Address} from './address';
+import {Type} from './type';
+import {Contact} from './contact';
+import {Hour} from './hour';
+import {Rating} from './rating';
+
 export class Spot {
   id: string;
   name: string;
   description: string;
+  address: Address;
+  type: Type;
+  contact: Contact;
   coverPhoto: string;
-  country: string;
-  city: string;
-  street: string;
-  house: string;
-  apartment: string;
-  postalCode: string;
-  category: string;
-  subcategory: string;
+  photos: Array<any>;
+  overallRating: number;
+  businessHours: Array<Hour>;
+  ratings: Array<Rating>;
+  tags: Array<string>;
 
-  constructor(id: string, name: string, description: string, coverPhoto: string, country: string, city: string, street: string, house: string, apartment: string, postalCode: string, category: string, subcategory: string) {
+  constructor(id: string, name: string, description: string, address: Address, type: Type, contact: Contact, coverPhoto: string, photos: Array<any>, overallRating: number, businessHours: Array<Hour>, ratings: Array<Rating>, tags: Array<string>) {
     this.id = id;
     this.name = name;
     this.description = description;
+    this.address = address;
+    this.type = type;
+    this.contact = contact;
     this.coverPhoto = coverPhoto;
-    this.country = country;
-    this.city = city;
-    this.street = street;
-    this.house = house;
-    this.apartment = apartment;
-    this.postalCode = postalCode;
-    this.category = category;
-    this.subcategory = subcategory;
+    this.photos = photos;
+    this.overallRating = overallRating;
+    this.businessHours = businessHours;
+    this.ratings = ratings;
+    this.tags = tags;
   }
 }
