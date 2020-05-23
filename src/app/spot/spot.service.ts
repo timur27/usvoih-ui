@@ -25,7 +25,6 @@ export class SpotService {
 
   actionOnSpots(spots: Spot[], actionName: string): Observable<any>{
     const options = {headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json')};
-    debugger;
     return this.http.post(this.remoteUrl + 'spots/' + actionName, spots, options);
   }
 }
