@@ -4,7 +4,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
+<div class="modal-body low-priority">
     <section class="input-content">
       <div class="input-content-wrap">
           <dd class="inputbox-content">
@@ -62,6 +62,14 @@
           <label for="input1">Subcategory</label>
           <span class="underline"></span>
         </dd>
+          <ul class="no-bull">
+            <li *ngFor="let businessHour of spot.businessHours; let index = index">
+              <div class="column-left">{{businessHour.day}}</div>
+              <div class="column-center"><ngb-timepicker class="no-bull" [(ngModel)]="businessHour.openHour"></ngb-timepicker></div>
+
+              <div class="column-right"><ngb-timepicker [(ngModel)]="businessHour.closeHour"></ngb-timepicker></div>
+            </li>
+          </ul>
       </div>
     </section>
   <button (click)="passBack()" type="submit" class="btn btn-primary w-100">Save</button>

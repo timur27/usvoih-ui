@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
-import {BehaviorSubject, interval, Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {Spot} from '../api/spot';
-import {map, startWith, switchMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class SpotService {

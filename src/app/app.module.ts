@@ -11,8 +11,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {SpotDetailsComponent} from './spot/spot-details/spot-details.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {TimePickerAdapter} from './spot/spot-details/time-picker.adapter';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import {SpotDetailsComponent} from './spot/spot-details/spot-details.component';
     SpotDetailsComponent
   ],
   imports: [
+    NgxMaterialTimepickerModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -33,7 +36,9 @@ import {SpotDetailsComponent} from './spot/spot-details/spot-details.component';
   ],
   providers: [
     SpotService,
-    SpotDetailsComponent
+    SpotDetailsComponent,
+    NgbTimepickerConfig,
+    TimePickerAdapter
   ],
   bootstrap: [AppComponent]
 })
