@@ -70,13 +70,11 @@ export class SpotComponent implements OnInit {
   }
 
   openDetails(spot: Spot) {
-    const modalRef = this.modalService.open(SpotDetailsComponent);
+    const modalRef = this.modalService.open(SpotDetailsComponent, {backdrop: 'static', keyboard: false});
     modalRef.componentInstance.spot = spot;
     modalRef.result.then((res) => {
       const spotToUpdate = this.dataSource.data.findIndex(x => x.id === res.id);
-      console.log('here is id of updated spot: ', spotToUpdate);
       this.dataSource.data[spotToUpdate] = res;
-      console.log(this.dataSource.data);
     });
   }
 }

@@ -6,7 +6,6 @@ const pad = (i: number): string => i < 10 ? `0${i}` : `${i}`;
 @Injectable()
 export class TimePickerAdapter extends NgbTimeAdapter<string> {
   fromModel(value: string | null): NgbTimeStruct | null {
-    console.log('im in fromModel');
     if (!value) {
       return null;
     }
@@ -19,7 +18,6 @@ export class TimePickerAdapter extends NgbTimeAdapter<string> {
   }
 
   toModel(time: NgbTimeStruct | null): string | null {
-    console.log('im in toModel');
     return time != null ? `${pad(time.hour)}:${pad(time.minute)}` : null;
   }
 }
