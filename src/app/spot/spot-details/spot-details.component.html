@@ -4,73 +4,150 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body low-priority">
+
+<form class="spot-details-edit-form" #details="ngForm">
+  <div class="modal-body low-priority">
     <section class="input-content">
       <div class="input-content-wrap">
-          <dd class="inputbox-content">
-            <input [(ngModel)]="spot.name" id="input0" type="text" required/>
-            <label for="input0">Name</label>
-            <span class="underline"></span>
-          </dd>
-          <dd class="inputbox-content">
-            <input [(ngModel)]="spot.description" id="input1" type="text" required/>
-            <label for="input1">Description</label>
-            <span class="underline"></span>
-          </dd>
+        <!--Name -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.address.coverPhoto" id="input1" type="text" required/>
-          <label for="input1">Cover Photo</label>
+          <input [(ngModel)]="spot.name" id="nameInput" name="spotName" type="text" #name="ngModel" required/>
+          <label for="nameInput">Name</label>
+          <span class="underline"></span>
+          <div *ngIf="name.invalid" class="alert alert-danger small">
+            <div *ngIf="name.errors.required">
+              Name is a required field
+            </div>
+          </div>
+        </dd>
+        <!--Description -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.description" id="descriptionInput" name="description" type="text"/>
+          <label for="descriptionInput">Description</label>
           <span class="underline"></span>
         </dd>
+        <!--Cover Photo -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.address.country" id="input1" type="text" required/>
-          <label for="input1">Country</label>
+          <input [(ngModel)]="spot.address.coverPhoto" id="coverPhotoInput" name="coverPhoto" type="text"/>
+          <label for="coverPhotoInput">Cover Photo</label>
           <span class="underline"></span>
         </dd>
+        <!--Country -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.address.city" id="input1" type="text" required/>
-          <label for="input1">City</label>
+          <input [(ngModel)]="spot.address.country" id="countryInput" name="country" type="text" #country="ngModel" required/>
+          <label for="countryInput">Country</label>
+          <span class="underline"></span>
+          <div *ngIf="country.invalid" class="alert alert-danger small">
+            <div *ngIf="country.errors.required">
+              Country is a required field
+            </div>
+          </div>
+        </dd>
+        <!--City -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.address.city" id="cityInput" name="city" type="text" #city="ngModel" required/>
+          <label for="cityInput">City</label>
+          <span class="underline"></span>
+          <div *ngIf="city.invalid" class="alert alert-danger small">
+            <div *ngIf="city.errors.required">
+              City is a required field
+            </div>
+          </div>
+        </dd>
+        <!--Street -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.address.street" id="streetInput" name="street" type="text"/>
+          <label for="streetInput">Street</label>
           <span class="underline"></span>
         </dd>
+        <!--House -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.address.street" id="input1" type="text" required/>
-          <label for="input1">Street</label>
+          <input [(ngModel)]="spot.address.house" id="houseInput" name="house" type="text"/>
+          <label for="houseInput">House</label>
           <span class="underline"></span>
         </dd>
+        <!--Apartment -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.address.house" id="input1" type="text" required/>
-          <label for="input1">House</label>
+          <input [(ngModel)]="spot.address.apartment" id="apartmentInput" name="apartment" type="text"/>
+          <label for="apartmentInput">Apartment</label>
           <span class="underline"></span>
         </dd>
+        <!--Postal Code -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.address.apartment" id="input1" type="text" required/>
-          <label for="input1">Apartment</label>
+          <input [(ngModel)]="spot.address.postalCode" id="postalCodeInput" name="postalCode" type="text"/>
+          <label for="postalCodeInput">Postal Code</label>
           <span class="underline"></span>
         </dd>
+        <!--Category -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.address.postalCode" id="input1" type="text" required/>
-          <label for="input1">Postal Code</label>
+          <input [(ngModel)]="spot.type.category" id="categoryInput" name="category" type="text"/>
+          <label for="categoryInput">Category</label>
           <span class="underline"></span>
         </dd>
+        <!--Subcategory -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.type.category" id="input1" type="text" required/>
-          <label for="input1">Category</label>
+          <input [(ngModel)]="spot.type.subcategory" id="subcategoryInput" name="subcategory" type="text"/>
+          <label for="subcategoryInput">Subcategory</label>
           <span class="underline"></span>
         </dd>
+        <!--Phone Number -->
         <dd class="inputbox-content">
-          <input [(ngModel)]="spot.type.subcategory" id="input1" type="text" required/>
-          <label for="input1">Subcategory</label>
+          <input [(ngModel)]="spot.contact.phone" id="phoneInput" name="phone" type="text" #phone="ngModel" required/>
+          <label for="phoneInput">Phone Number</label>
           <span class="underline"></span>
+          <div *ngIf="phone.invalid" class="alert alert-danger small">
+            <div *ngIf="phone.errors.required">
+              Phone is a required field
+            </div>
+          </div>
         </dd>
-          <ul class="no-bull">
-            <li *ngFor="let businessHour of spot.businessHours; let index = index">
-              <div class="column-left">{{businessHour.day}}</div>
-              <div class="column-center"><ngb-timepicker class="no-bull" [(ngModel)]="businessHour.openHour"></ngb-timepicker></div>
 
-              <div class="column-right"><ngb-timepicker [(ngModel)]="businessHour.closeHour"></ngb-timepicker></div>
-            </li>
-          </ul>
+        <!--Website -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.contact.website" id="websiteInput" name="website" type="text"/>
+          <label for="websiteInput">Website</label>
+          <span class="underline"></span>
+        </dd>
+
+        <!--Email -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.contact.email" id="emailInput" name="email" type="text"/>
+          <label for="emailInput">Email</label>
+          <span class="underline"></span>
+        </dd>
+
+        <!--Facebook -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.contact.facebook" id="facebookInput" name="facebook" type="text"/>
+          <label for="facebookInput">Facebook</label>
+          <span class="underline"></span>
+        </dd>
+
+        <!--VK -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.contact.vk" id="vkInput" name="vk" type="text"/>
+          <label for="vkInput">VK</label>
+          <span class="underline"></span>
+        </dd>
+
+        <!--Instagram -->
+        <dd class="inputbox-content">
+          <input [(ngModel)]="spot.contact.instagram" id="instagramInput" name="instagram" type="text"/>
+          <label for="instagramInput">Instagram</label>
+          <span class="underline"></span>
+        </dd>
+
+
+        <!--Business Hours -->
+        <ul class="no-bull">
+          <li *ngFor="let businessHour of spot.businessHours; let index = index">
+            <div class="column-left">{{businessHour.day}}</div>
+            <div class="column-center"><ngb-timepicker class="no-bull" [(ngModel)]="businessHour.openHour" id="openHourInput" name="openHour"></ngb-timepicker></div>
+            <div class="column-right"><ngb-timepicker [(ngModel)]="businessHour.closeHour" id="closeHourInput" name="closeHour"></ngb-timepicker></div>
+          </li>
+        </ul>
       </div>
     </section>
-  <button (click)="passBack()" type="submit" class="btn btn-primary w-100">Save</button>
-</div>
+    <button (click)="passBack()" type="submit" [disabled]="details.invalid" class="btn btn-primary w-100">Save</button>
+  </div>
+</form>
