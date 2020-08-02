@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {NgbActiveModal, NgbTimeAdapter, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {TimePickerAdapter} from './time-picker.adapter';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-spot-details',
@@ -22,7 +23,7 @@ export class SpotDetailsComponent implements OnInit  {
 
   ngOnInit(): void {}
 
-  passBack() {
+  passBack(details: NgForm) {
     this.passEntry.emit(this.spot);
     this.activeModal.close(this.spot);
   }

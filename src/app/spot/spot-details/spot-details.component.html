@@ -1,11 +1,11 @@
 <div class="modal-header" data-backdrop="static">
   <dt class="inputbox-title modal-title">Edit Spot</dt>
-<!--  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">-->
-<!--    <span aria-hidden="true">&times;</span>-->
-<!--  </button>-->
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
-<form class="spot-details-edit-form" #details="ngForm">
+<form [ngFormOptions]="{updateOn: 'submit'}" class="spot-details-edit-form" #details="ngForm" (ngSubmit)="passBack(details)">
   <div class="modal-body low-priority">
     <section class="input-content">
       <div class="input-content-wrap">
@@ -148,6 +148,7 @@
         </ul>
       </div>
     </section>
-    <button (click)="passBack()" type="submit" [disabled]="details.invalid" class="btn btn-primary w-100">Save</button>
+<!--    <button (click)="passBack(details)" type="submit" [disabled]="details.invalid" class="btn btn-primary w-100">Save</button>-->
+    <button class="btn btn-primary w-100">Save</button>
   </div>
 </form>
