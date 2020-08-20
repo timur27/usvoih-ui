@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
 export class SpotService {
 
   localUrl = 'http://localhost:8081/';
-  remoteUrl = 'https://usvoih.herokuapp.com/';
+  remoteUrl = 'http://usvoih-env.eba-qzqbgpp4.us-east-2.elasticbeanstalk.com/';
 
   constructor(private http: HttpClient) {
   }
